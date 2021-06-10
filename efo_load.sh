@@ -37,8 +37,7 @@ if [ -e efo.txt ] && [ $FORCE_CONVERT -eq 0 ] ; then
   # versionに更新があればダウンロードする
   else
     cd ${DATA_DIR}
-    wget ${file_url} > /wget.log 
-    cat /wget.log
+    wget ${file_url} 2> /dev/stdout
     chmod 777 $(ls) 
     echo "${version}" > ${WORK_DIR}/efo.txt
     chmod 777 ${WORK_DIR}/efo.txt
@@ -48,8 +47,7 @@ else
   
   # ファイルをダウンロードする
   cd ${DATA_DIR}
-  wget ${file_url} > /wget.log
-  cat /wget.log
+  wget ${file_url} 2> /sev/stdout
   chmod 777 $(ls)
   echo "${version}" > ${WORK_DIR}/efo.txt
   chmod 777 ${WORK_DIR}/efo.txt
