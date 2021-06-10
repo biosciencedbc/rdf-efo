@@ -23,8 +23,8 @@ shift  $(($OPTIND - 1))
 
 cd ${WORK_DIR}
 # versionの確認
-version=`curl -L "http://www.ebi.ac.uk/ols/api/ontologies/efo" | jq '.config | .version'`
-file_url=`curl -L "http://www.ebi.ac.uk/ols/api/ontologies/efo" | jq '.config | .id' | sed "s/\"//g"` 
+version=`curl -s -L "http://www.ebi.ac.uk/ols/api/ontologies/efo" | jq '.config | .version'`
+file_url=`curl -s -L "http://www.ebi.ac.uk/ols/api/ontologies/efo" | jq '.config | .id' | sed "s/\"//g"` 
 
 
 # 前回ファイルのバージョンが記載されたファイルが存在する場合
@@ -37,7 +37,8 @@ if [ -e efo.txt ] && [ $FORCE_CONVERT -eq 0 ] ; then
   # versionに更新があればダウンロードする
   else
     cd ${DATA_DIR}
-    wget -nc ${file_url}
+    wget ${file_url} > /wget.log 
+    cat /wget.log
     chmod 777 $(ls) 
     echo "${version}" > ${WORK_DIR}/efo.txt
     chmod 777 ${WORK_DIR}/efo.txt
@@ -47,7 +48,8 @@ else
   
   # ファイルをダウンロードする
   cd ${DATA_DIR}
-  wget -nc ${file_url}
+  wget ${file_url} > /wget.log
+  cat /wget.log
   chmod 777 $(ls)
   echo "${version}" > ${WORK_DIR}/efo.txt
   chmod 777 ${WORK_DIR}/efo.txt
