@@ -47,7 +47,7 @@ else
   
   # ファイルをダウンロードする
   cd ${DATA_DIR}
-  wget ${file_url} 2> /sev/stdout
+  wget ${file_url} 2> /dev/stdout
   chmod 777 $(ls)
   echo "${version}" > ${WORK_DIR}/efo.txt
   chmod 777 ${WORK_DIR}/efo.txt
