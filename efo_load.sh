@@ -40,7 +40,8 @@ if [ -e efo.txt ] && [ $FORCE_CONVERT -eq 0 ] ; then
     wget ${file_url} 2> /dev/stdout
     chmod 777 $(ls) 
     echo "${version}" > ${WORK_DIR}/efo.txt
-    chmod 777 ${WORK_DIR}/efo.txt
+    cp ${WORK_DIR}/efo.txt ${WORK_DIR}/version.txt
+    chmod 777 ${WORK_DIR}/efo.txt ${WORK_DIR}/version.txt 
   fi
 # 前回ファイルがない場合(初回実行の場合)
 else 
@@ -50,7 +51,8 @@ else
   wget ${file_url} 2> /dev/stdout
   chmod 777 $(ls)
   echo "${version}" > ${WORK_DIR}/efo.txt
-  chmod 777 ${WORK_DIR}/efo.txt
+  cp ${WORK_DIR}/efo.txt ${WORK_DIR}/version.txt
+  chmod 777 ${WORK_DIR}/efo.txt ${WORK_DIR}/version.txt
 fi
 
 
